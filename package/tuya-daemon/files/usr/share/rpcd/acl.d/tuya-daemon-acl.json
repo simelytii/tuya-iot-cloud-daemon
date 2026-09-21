@@ -1,0 +1,15 @@
+{
+    "tuya-daemon": {
+        "description": "Tuya daemon configuration API",
+        "read": {
+            "api": [
+                "/tuya_daemon/*"
+            ]
+        },
+        "write": {
+            "api": [
+                "/tuya_daemon/*"
+            ]
+        }
+    }
+}

@@ -1,9 +1,5 @@
 # Build artifacts
 build/
-tuya-iot-core-sdk/build/
 
 # Object files
 *.o
-
-# Executable
-tuya-daemon
