@@ -23,50 +23,8 @@ device_secret.maxlength = 256
 local product_id = TuyaConfig:option("product_id")
 product_id.maxlength = 256
 --------------------------------------------------
-DAEMON CONTROL ACTIONS
+-- DAEMON CONTROL ACTIONS
 --------------------------------------------------
-
-function TuyaDaemon:StartAction()
-	local result = os.execute("/etc/init.d/tuya-daemon start")
-
-	if result == 0 or result == true then
-		return self:ResponseOK({
-			result = "Tuya daemon started"
-		})
-	end
-
-	self:add_error(500, "Failed to start Tuya daemon", "tuya_daemon")
-	return self:ResponseOK()
-end
-
-
-function TuyaDaemon:StopAction()
-	local result = os.execute("/etc/init.d/tuya-daemon stop")
-
-	if result == 0 or result == true then
-		return self:ResponseOK({
-			result = "Tuya daemon stopped"
-		})
-	end
-
-	self:add_error(500, "Failed to stop Tuya daemon", "tuya_daemon")
-	return self:ResponseOK()
-end
-
-
-function TuyaDaemon:RestartAction()
-	local result = os.execute("/etc/init.d/tuya-daemon restart")
-
-	if result == 0 or result == true then
-		return self:ResponseOK({
-			result = "Tuya daemon restarted"
-		})
-	end
-
-	self:add_error(500, "Failed to restart Tuya daemon", "tuya_daemon")
-	return self:ResponseOK()
-end
-
 
 function TuyaDaemon:ReportNowAction()
 	local handle = io.popen("ubus call tuya_daemon report_now 2>&1")
@@ -88,16 +46,6 @@ function TuyaDaemon:StatusAction()
 		result = output
 	})
 end
-
-
-local start_action =
-	TuyaDaemon:action("start", TuyaDaemon.StartAction)
-
-local stop_action =
-	TuyaDaemon:action("stop", TuyaDaemon.StopAction)
-
-local restart_action =
-	TuyaDaemon:action("restart", TuyaDaemon.RestartAction)
 
 local report_action =
 	TuyaDaemon:action("report_now", TuyaDaemon.ReportNowAction)

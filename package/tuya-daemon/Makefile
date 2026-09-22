@@ -30,18 +30,6 @@ define Package/tuya-daemon/install
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_CONF) ./files/etc/config/tuya-daemon.config \
 		$(1)/etc/config/tuya-daemon
-
-	$(INSTALL_DIR) $(1)/usr/lib/lua/api/services
-	$(INSTALL_DATA) ./files/usr/lib/lua/api/services/tuya_daemon.lua \
-		$(1)/usr/lib/lua/api/services/tuya_daemon.lua
-
-	$(INSTALL_DIR) $(1)/usr/share/vuci/path.d
-	$(INSTALL_DATA) ./files/usr/share/vuci/path.d/tuya-daemon-vuci-route.json \
-		$(1)/usr/share/vuci/path.d/tuya-daemon-vuci-route.json
-
-	$(INSTALL_DIR) $(1)/usr/share/rpcd/acl.d
-	$(INSTALL_DATA) ./files/usr/share/rpcd/acl.d/tuya-daemon-acl.json \
-		$(1)/usr/share/rpcd/acl.d/tuya-daemon-acl.json
 endef
 
 $(eval $(call BuildPackage,tuya-daemon))
